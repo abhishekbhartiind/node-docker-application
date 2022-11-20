@@ -63,10 +63,30 @@ Dockerfile  README.md  docs  index.js  node_modules  package-lock.json  package.
 root@b01f7af73799:/app# exit
 ```
 
+MOST USED
+
 ```bash
 # [build]
 docker build -t node-app-image .
 
 # [run]
 docker run -p 4000:3000 -d --name node-app node-app-image
+
+# [delete container]
+docker rm node-app -f
+
+# [delete image]
+docker image rm IMAGE_ID
 ```
+
+- We build an image with docker file
+- Then we build a container from docker image
+
+[stale_updating_data]
+
+- if you change anything after the build, it will not updated
+  over docker, as docker images is created before incorporating
+  those changes.
+- To update, we have to rebuild the docker image
+
+[Volumes]
