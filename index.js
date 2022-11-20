@@ -4,7 +4,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 app.get("/", (req, res) => {
-  res.send("<h2>Node Docker</h2>")
+  res.send(
+    "<div><h2>Node Docker </h2><br /><p>Lovely docker tutorial</p></div>"
+  )
 })
 
 app.listen(PORT, () => {

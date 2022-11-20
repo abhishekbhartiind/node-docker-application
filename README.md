@@ -72,6 +72,10 @@ docker build -t node-app-image .
 # [run]
 docker run -p 4000:3000 -d --name node-app node-app-image
 
+# [run container with volume]
+docker run -v $(pwd):/app -p 4000:3000 -d --name node-app node-app-image
+
+
 # [delete container]
 docker rm node-app -f
 
@@ -90,3 +94,22 @@ docker image rm IMAGE_ID
 - To update, we have to rebuild the docker image
 
 [Volumes]
+
+- Have persisted data
+  ```bash
+  docker run -v pathdirtolocation:pathdirtocontainer -p 4000:3000 -d --name node-app node-app-image
+  ```
+- use `nodemon` to have updated express changes
+
+### Run docker with volume
+
+```bash
+docker run -v /Users/abhishek/codes/loving/own/node-docker:/app -p 4000:3000 -d --name node-app node-app-image
+# or
+# Mac - $(pwd)
+# Windows - %cd% / ${pwd}
+docker run -v $(pwd):/app -p 4000:3000 -d --name node-app node-app-image
+
+# updates in Dockerfile, as we are running from `nodemon`
+CMD ["npm", "run", "dev"]
+```
