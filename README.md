@@ -127,5 +127,13 @@ NOTE
 
 ```bash
 docker run -v $(pwd):/app -v /app/node_modules -p 4000:3000 -d --name node-app node-app-image
+```
 
+[To make read only bind mount, if we don't care of this... anything you create/update a file it will
+also reflect in local environment. which is a security issue]
+
+```bash
+# :ro - represent read only file system
+
+docker run -v $(pwd):/app:ro -v /app/node_modules -p 4000:3000 -d --name node-app node-app-image
 ```
