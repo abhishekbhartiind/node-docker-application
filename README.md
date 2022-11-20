@@ -167,3 +167,7 @@ docker rm node-app -fv
 # prune
 docker volume prune
 ```
+
+## Docker Compose
+
+Automate the process of building and running docker
