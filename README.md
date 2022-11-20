@@ -56,7 +56,7 @@ docker ps -a # shows all containers
 docker logs node-app # show logs related with docker container, here for "node-app"
 ```
 
-Overview of docker file system, we can ignore file with `.dockerignore`
+### Overview of docker file system, we can ignore file with `.dockerignore`
 
 ```bash
 docker exec -it node-app bash
@@ -66,7 +66,7 @@ Dockerfile  README.md  docs  index.js  node_modules  package-lock.json  package.
 root@b01f7af73799:/app# exit
 ```
 
-MOST USED
+### MOST USED
 
 ```bash
 # [build]
@@ -85,6 +85,8 @@ docker rm node-app -f
 # [delete image]
 docker image rm IMAGE_ID
 ```
+
+### Features
 
 - We build an image with docker file
 - Then we build a container from docker image
@@ -117,7 +119,7 @@ docker run -v $(pwd):/app -p 4000:3000 -d --name node-app node-app-image
 CMD ["npm", "run", "dev"]
 ```
 
-NOTE
+### NOTE
 
 - In case, if you delete `node_modules` from local system, docker container will not
   execute
@@ -136,4 +138,32 @@ also reflect in local environment. which is a security issue]
 # :ro - represent read only file system
 
 docker run -v $(pwd):/app:ro -v /app/node_modules -p 4000:3000 -d --name node-app node-app-image
+```
+
+### Setup ENV values in Dockerfile
+
+```bash
+ENV PORT 3000
+EXPOSE $PORT
+```
+
+```bash
+# -e / --env
+# run on setting -e PORT 4000
+docker run -v $(pwd):/app:ro -v /app/node_modules -e PORT=4000 -p 4000:4000 -d --name node-app node-app-image
+
+# run with .env file
+docker run -v $(pwd):/app:ro -v /app/node_modules --env-file ./.env  -p 4000:3000 -d --name node-app node-app-image
+```
+
+### Delete the preseved volume (prune)
+
+```bash
+# v refers to delete volume associated with container
+
+# [delete container with volume]
+docker rm node-app -fv
+
+# prune
+docker volume prune
 ```

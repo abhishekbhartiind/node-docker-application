@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
         <li>build an image</li>
         <li>run the container on particular image</li>
         <li>add docker volumes to persist changes from local to docker container</li>
+        <li>setting up environment variable</li>
+        <li>delete the volume associated with container</li>
       </ul>
     </div>`
   )
