@@ -51,6 +51,9 @@ docker run -p 4000:3000 -d --name node-app node-app-image
 # run docker in detched mode with specific name
 # with port `-p 4000:3000` 4000: run docker file and 3000: for node application
 docker exec -it node-app bash
+docker ps # shows you running containers
+docker ps -a # shows all containers
+docker logs node-app # show logs related with docker container, here for "node-app"
 ```
 
 Overview of docker file system, we can ignore file with `.dockerignore`
@@ -112,4 +115,17 @@ docker run -v $(pwd):/app -p 4000:3000 -d --name node-app node-app-image
 
 # updates in Dockerfile, as we are running from `nodemon`
 CMD ["npm", "run", "dev"]
+```
+
+NOTE
+
+- In case, if you delete `node_modules` from local system, docker container will not
+  execute
+- because in 2nd layer, we have `/app` which sync all the local changes to volume, since
+  node_modules is not present in local environment, then there will be issue while running
+- to overcome with this problem, we can make use of another container related to node_modules
+
+```bash
+docker run -v $(pwd):/app -v /app/node_modules -p 4000:3000 -d --name node-app node-app-image
+
 ```
