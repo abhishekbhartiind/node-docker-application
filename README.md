@@ -39,5 +39,34 @@ CMD ["node", "index.js"] # tell container what to run (when we run container)
 ```
 
 ```bash
-docker build
+docker build . # build docker image
+docker image ls # list of all docker images
+docker image rm IMAGE_ID # delete docker image
+docker build -t node-app-image . # build docker image with name
+docker run -d node-app-image # run docker with predefined name
+docker run -d --name node-app node-app-image # run docker in detched mode with specific name
+docker ps # check all the containers
+docker rm node-app -f # force fully removed docker
+docker run -p 4000:3000 -d --name node-app node-app-image
+# run docker in detched mode with specific name
+# with port `-p 4000:3000` 4000: run docker file and 3000: for node application
+docker exec -it node-app bash
+```
+
+Overview of docker file system, we can ignore file with `.dockerignore`
+
+```bash
+docker exec -it node-app bash
+
+root@b01f7af73799:/app# ls
+Dockerfile  README.md  docs  index.js  node_modules  package-lock.json  package.json  yarn.lock
+root@b01f7af73799:/app# exit
+```
+
+```bash
+# [build]
+docker build -t node-app-image .
+
+# [run]
+docker run -p 4000:3000 -d --name node-app node-app-image
 ```
