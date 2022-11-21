@@ -209,9 +209,13 @@ docker-compose down -v # tear down container and volumes
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 # f: refers to file -- first it loads from docker-compose.yml (base file)
 # then dev file
 # up: build and start docker container
 # -d: deteched mode
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
+
+docker exec -it node-docker_node-app_1 bash
 ```
