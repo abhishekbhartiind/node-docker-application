@@ -54,6 +54,7 @@ docker exec -it node-app bash
 docker ps # shows you running containers
 docker ps -a # shows all containers
 docker logs node-app # show logs related with docker container, here for "node-app"
+docker volume ls # show all volums
 ```
 
 ### Overview of docker file system, we can ignore file with `.dockerignore`
@@ -171,3 +172,23 @@ docker volume prune
 ## Docker Compose
 
 Automate the process of building and running docker
+
+```bash
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./:app
+      - ./app/node_modules
+    environment:
+      - PORT=3000
+    # env_file:
+    #   - ./.env
+```
+
+```bash
+docker-compose up -d # to up container
+```
