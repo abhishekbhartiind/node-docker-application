@@ -200,3 +200,18 @@ docker-compose up -d --build
 docker-compose down # tear down container
 docker-compose down -v # tear down container and volumes
 ```
+
+## Multiple docker-compose files
+
+- Create dev and prod docker-compose yml files
+- Base `docker-compose.yml` serves as common features on both files
+- run with order
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+# f: refers to file -- first it loads from docker-compose.yml (base file)
+# then dev file
+# up: build and start docker container
+# -d: deteched mode
+```
