@@ -190,5 +190,13 @@ services:
 ```
 
 ```bash
+# [BUILD & START THE CONTAINER]
 docker-compose up -d # to up container
+
+# [REBUILD THE IMAGE]
+docker-compose up -d --build
+
+# [TEARDOWN THE CONTAINER]
+docker-compose down # tear down container
+docker-compose down -v # tear down container and volumes
 ```

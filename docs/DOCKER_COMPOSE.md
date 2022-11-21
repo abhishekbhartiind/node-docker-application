@@ -20,4 +20,6 @@ services:    # each container refers as service (list them)
 
 ```bash
 docker-compose up -d # to up container
+docker-compose down # tear down image and container
+docker-compose down -v # tear down image, container and volumes
 ```
