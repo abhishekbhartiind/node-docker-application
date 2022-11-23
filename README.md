@@ -238,8 +238,19 @@ services:
       - PORT=3000
 
   mongo:
-    image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+    image: mongo # default image for docker named (mongo)
+    environment: # authentication username and password
+      - MONGO_INITDB_ROOT_USERNAME=abhishek
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+    volumes:      # add named volumes to mongo volume path
+      - mongo-db:/data/db
+volumes:      # add this to list all named volumes
+  mongo-db:
+```
+
+```bash
+docker ps
+docker exec -it node-docker_mongo_1 bash
+# view mongo cli (latest version)
+mongosh -u "abhishek" -p "mypassword"
 ```
