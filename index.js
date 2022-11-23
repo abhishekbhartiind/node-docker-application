@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
         <li>add docker volumes to persist changes from local to docker container</li>
         <li>setting up environment variable</li>
         <li>delete the volume associated with container</li>
+        <li>introducing docker-compose to automate build and up container</li>
+        <li>multiple docker file based upon environment</li>
       </ul>
     </div>`
   )
