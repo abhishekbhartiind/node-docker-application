@@ -219,3 +219,27 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
 
 docker exec -it node-docker_node-app_1 bash
 ```
+
+## Mongo: Docker Image
+
+[Documentation](https://hub.docker.com/_/mongo)
+
+```bash
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./:/app
+      - ./app/node_modules
+    environment:
+      - PORT=3000
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+```
