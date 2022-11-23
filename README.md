@@ -254,3 +254,9 @@ docker exec -it node-docker_mongo_1 bash
 # view mongo cli (latest version)
 mongosh -u "abhishek" -p "mypassword"
 ```
+
+Delete all unused volumes
+
+```bash
+docker volume prune
+```
