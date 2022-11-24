@@ -1,9 +1,12 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require("./config")
 const app = express()
 
 mongoose
-  .connect("mongodb://abhishek:mypassword@mongo:27017/?authSource=admin")
+  .connect(
+    `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
+  )
   .then(() => {
     console.log("Successfully connected to docker mongo db")
   })
