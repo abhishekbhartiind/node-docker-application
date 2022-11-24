@@ -1,5 +1,15 @@
 const express = require("express")
+const mongoose = require("mongoose")
 const app = express()
+
+mongoose
+  .connect("mongodb://abhishek:mypassword@mongo:27017/?authSource=admin")
+  .then(() => {
+    console.log("Successfully connected to docker mongo db")
+  })
+  .catch((err) => {
+    console.log("error connecting", err)
+  })
 
 const PORT = process.env.PORT || 3000
 

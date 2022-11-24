@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/abhishekbhartiind/node-docker-application#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3"
   }
 }

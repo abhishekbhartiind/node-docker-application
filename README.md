@@ -260,3 +260,61 @@ Delete all unused volumes
 ```bash
 docker volume prune
 ```
+
+## Installing mongoose and connected with docker mongo
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+
+npm i mongoose
+docker inspect node-docker_node-app_1  # inspect about app and get ip address
+docker inspect node-docker_mongo_1  # inspect about app and get ip address
+
+```
+
+```bash
+const mongoose = require("mongoose")
+mongoose
+  .connect("mongodb://username:password@ip_of_mongo_container:27017/?authSource=admin")
+  .then(() => {
+    console.log("Successfully connected to docker mongo db")
+  })
+  .catch((err) => {
+    console.log("error connecting", err)
+  })
+```
+
+## Custom Network
+
+```bash
+docker network ls
+docker exec -it node-docker_node-app_1 bash
+```
+
+Here, `service` name in docker compose file contains
+alias for their network. Instead of using ip we can use
+`"mongo"`
+
+```bash
+mongoose
+  .connect("mongodb://username:password@mongo:27017/?authSource=admin")
+  .then(() => {
+    console.log("Successfully connected to docker mongo db")
+  })
+  .catch((err) => {
+    console.log("error connecting", err)
+  })
+```
+
+```bash
+ping mongo
+
+# return ip address of mongo in docker
+PING mongo (172.26.0.2) 56(84) bytes of data.
+64 bytes from node-docker_mongo_1.node-docker_default (172.26.0.2): icmp_seq=1 ttl=64 time=0.937 ms
+```
+
+```
+
+```
